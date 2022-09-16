@@ -66,7 +66,15 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                     Icon(Icons.people, size: 80, color: Colors.green[900]),
                     campoTexto("CPF", txtCpf),
                     campoTextoSenha("Senha", txtSenha),
-                    botaoLogin(context),
+                    
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children:[                         
+                          BotaoCadastro(context),
+                          
+                          botaoLogin(context),
+                        ],
+                    )
                 ]
                 ),
                 
@@ -175,6 +183,37 @@ campoTextoSenha(rotulo, controle) {
           onPressed: () {
             if (_loginkey.currentState!.validate()) {
               //login();
+
+              Navigator.pushNamed(context, "t2");
+            }
+          },
+          style: ButtonStyle (
+              backgroundColor:  MaterialStateProperty.all(Colors.green[900]),
+            ),
+        ));
+  }
+
+
+
+
+    BotaoCadastro(BuildContext context) {
+    return Container(
+        padding: const EdgeInsets.only(top: 20),
+        child: ElevatedButton(
+          child: Text(
+            "Cadastro",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              
+            ),
+          ),
+          
+          onPressed: () {
+            if (_loginkey.currentState!.validate()) {
+              //cadastro();
+
+              //Navigator.pushNamed(context, "t2");
             }
           },
           style: ButtonStyle (
