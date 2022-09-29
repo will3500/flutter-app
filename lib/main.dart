@@ -1,7 +1,7 @@
-import 'dart:js';
+
 import 'package:coopertransc/view/TelaPrincipal.dart';
 import 'package:coopertransc/PageviewPrincipal.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 void main(){
