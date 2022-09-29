@@ -55,16 +55,30 @@ class _telaAvisosState extends State<telaAvisos> {
 
   ListaAvisos(){
     
-    return ListView.builder(
-      itemCount: 2,
+    return ListView.separated(
+      itemCount: Lavisos.length,
       itemBuilder: (context,index){
-        return ListTile(
-          //widget
-          title: Text(
-            Lavisos[index].mensagem.toString(),
+        return Container(
+          padding: EdgeInsets.all(10),
+          child: Card(
+            elevation: 8,
+            
+            child: ListTile(
+              leading: Icon(Icons.warning_sharp, size: 40,color: Colors.green[900],),
+              title: Text(
+                Lavisos[index].titulo.toString(),
+              ),
+              subtitle: Text(Lavisos[index].dataPublicacao.toString()) ,
+              trailing: Icon(Icons.arrow_forward_ios),
+              textColor: Colors.black,
+              onTap: (){
+                Navigator.pushNamed(context, "t3", arguments:{"id" : Lavisos[index].id, "mensagem" : Lavisos[index].mensagem.toString(), "data" : Lavisos[index].dataPublicacao.toString(), "titulo" : Lavisos[index].titulo.toString() } );
+              },
+               
+            ),
           ),
         );
-      },
+      }, separatorBuilder: (BuildContext context, int index) => Divider(), 
     );
   }
 }

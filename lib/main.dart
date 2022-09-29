@@ -1,6 +1,7 @@
 
 import 'package:coopertransc/view/TelaPrincipal.dart';
 import 'package:coopertransc/PageviewPrincipal.dart';
+import 'package:coopertransc/view/avisodetalhes.dart';
 
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,8 @@ void main(){
       initialRoute: "t1",
       routes: {
         "t1" : (context) => TelaPrincipal(),
-        "t2" : (context) => PageviewPrincipal()
+        "t2" : (context) => PageviewPrincipal(),
+        "t3" : (context) => avisosD()
       },
     )
   );
