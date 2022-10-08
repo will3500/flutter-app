@@ -38,4 +38,22 @@ class API {
       print("erro conexao API");
     }
   }
+
+
+    static Future getViagem() async {
+    var url = baseURL + "/viagens";
+
+    http.Response response = await http.get(Uri.parse(url), headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer $token"
+    });
+
+    if (response.statusCode == 200) {
+      
+      return await response;
+      
+    } else {
+      print("erro conexao API");
+    }
+  }
 }

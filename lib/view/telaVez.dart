@@ -101,7 +101,7 @@ class _telaVezState extends State<telaVez> {
 
    getvez(){
       API.getVez().then((response) {
-      setState(() {        
+      if ( mounted )setState(() {        
         Iterable lista = json.decode(response.body);
         Lvez = lista.map((model) => vez.fromJson(model)).toList();
         
