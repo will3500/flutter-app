@@ -1,78 +1,60 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'dart:convert';
-
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
-class TelaPrincipal extends StatefulWidget {
-  const TelaPrincipal({Key? key}) : super(key: key);
+class TelaCadastro extends StatefulWidget {
+  const TelaCadastro({super.key});
 
   @override
-  State<TelaPrincipal> createState() => _TelaPrincipalState();
+  State<TelaCadastro> createState() => _TelaCadastroState();
 }
 
-class _TelaPrincipalState extends State<TelaPrincipal> {
-  
-  
-  GlobalKey<FormState> _loginkey = GlobalKey<FormState>();
+class _TelaCadastroState extends State<TelaCadastro> {
+
+
+    GlobalKey<FormState> _cadastrokey = GlobalKey<FormState>();
   TextEditingController txtCpf = TextEditingController();
-  TextEditingController txtSenha = TextEditingController();
+  TextEditingController txtSenha = TextEditingController();  
+  TextEditingController txtNome = TextEditingController();
+  TextEditingController txtEmail = TextEditingController();
   
 
 
-    @override
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(      
-
-      
+    
+    return Scaffold(
       backgroundColor: Colors.green[400],
+
       body: SingleChildScrollView(
-        child: 
-                      
-        Column(
-          children: <Widget>[
-
-             //area superior
-            Container(    
-              color: Colors.green[400],                                
-              child: Row(                
-                children: [
-                  Image.asset("assets/images/coopertransc_inicial.png",fit: BoxFit.contain,width: MediaQuery.of(context).size.width),
-                  
-                ],
-              )
-            ), 
-
-
-
-            Container(   
+        child:  Container(   
               padding: const EdgeInsets.symmetric(horizontal: 52, vertical: 52), 
               color: Colors.green.shade400,                                
               child: Form(                
-                key: _loginkey,
+                key: _cadastrokey,
                 
                 child: Column(
                   
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Text(
-                      "Acesso do cooperado",
+                      "Cadastro do cooperado",
                       style: TextStyle(fontSize: 24),
                       textAlign: TextAlign.center,
                       ),
                     
                     Icon(Icons.people, size: 80, color: Colors.green[900]),
-                    campoTexto("CPF", txtCpf),
+                    campoTexto("Nome", txtNome),
+                    campoTexto("CPF", txtCpf),                    
                     campoTextoSenha("Senha", txtSenha),
+                    campoTexto("Email", txtEmail),
                     
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children:[                         
-                          BotaoCadastro(context),
-                          
-                          botaoLogin(context),
+                        children:[   
+                          BotaoVoltar(),                       
+                          BotaoCadastrar(context),  
+                                                 
                         ],
                     )
                 ]
@@ -80,35 +62,16 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                 
               )
             ),
+        
+      
+      ),
 
-
-            Container(    
-              color: Colors.green[400],   
-               padding: const EdgeInsets.symmetric(vertical: 12),                      
-              child: Row(   
-                mainAxisAlignment: MainAxisAlignment.center,  
-                         
-                children: [
-                  Image.asset("assets/images/logo_coopertransc.png",fit: BoxFit.fitWidth,width: MediaQuery.of(context).size.width*0.7),
-                  
-                ],
-              )
-            ), 
-
-
-            
-
-          ],
-        ),
-
-      )
     );
   }
 
 
 
-
-campoTexto(rotulo, controle) {
+  campoTexto(rotulo, controle) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: TextFormField(
@@ -166,37 +129,7 @@ campoTextoSenha(rotulo, controle) {
 
 
 
-
-  botaoLogin(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.only(top: 20),
-        child: ElevatedButton(
-          child: Text(
-            "Login",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              
-            ),
-          ),
-          
-          onPressed: () {
-            if (_loginkey.currentState!.validate()) {
-              //login();
-
-              Navigator.pushNamed(context, "t2");
-            }
-          },
-          style: ButtonStyle (
-              backgroundColor:  MaterialStateProperty.all(Colors.green[900]),
-            ),
-        ));
-  }
-
-
-
-
-    BotaoCadastro(BuildContext context) {
+BotaoCadastrar(BuildContext context) {
     return Container(
         padding: const EdgeInsets.only(top: 20),
         child: ElevatedButton(
@@ -209,11 +142,11 @@ campoTextoSenha(rotulo, controle) {
             ),
           ),
           
-          onPressed: () {         
-              
-
-              Navigator.pushNamed(context, "t4");
-            
+          onPressed: () {
+            if (_cadastrokey.currentState!.validate()) {
+              //cadastro();
+                Navigator.pop(context);
+            }
           },
           style: ButtonStyle (
               backgroundColor:  MaterialStateProperty.all(Colors.green[900]),
@@ -222,9 +155,27 @@ campoTextoSenha(rotulo, controle) {
   }
 
 
-
-  
+  BotaoVoltar(){
+       return Container(
+        padding: const EdgeInsets.only(top: 20),
+        child: ElevatedButton(
+          child: Text(
+            "Voltar",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              
+            ),
+          ),
+          
+          onPressed: () {
+            
+                Navigator.pop(context);
+            
+          },
+          style: ButtonStyle (
+              backgroundColor:  MaterialStateProperty.all(Colors.green[900]),
+            ),
+        ));
+  }
 }
-
-
-        
