@@ -7,7 +7,7 @@ import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:coopertransc/model/viagens.dart';
 
-var Lvez = <viagens>[];
+var Lviagem = <viagens>[];
 
 class telaViagens extends StatefulWidget {
   const telaViagens({super.key});
@@ -35,7 +35,7 @@ class _telaViagensState extends State<telaViagens> {
 
     listaviagens(){
        return ListView.builder(
-      itemCount: Lvez.length,
+      itemCount: Lviagem.length,
       itemBuilder: (context,index){
         return Container(
           padding: EdgeInsets.all(10),
@@ -43,9 +43,9 @@ class _telaViagensState extends State<telaViagens> {
             elevation: 8,
             
             child: ListTile(
-              leading: geticon(Lvez[index].escolha.toString()),
+              leading: geticon(Lviagem[index].escolha.toString()),
               title: Text(
-                Lvez[index].nome.toString() +" -> " + Lvez[index].tipo.toString()+" - "+ Lvez[index].placa.toString()+" ("+ Lvez[index].marca.toString()+" "+ Lvez[index].placa.toString()+")",
+                Lviagem[index].nome.toString() +" -> " + Lviagem[index].tipo.toString()+" - "+ Lviagem[index].placa.toString()+" ("+ Lviagem[index].marca.toString()+" "+ Lviagem[index].placa.toString()+")",
                 style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
               ),
               subtitle: Container(
@@ -53,8 +53,8 @@ class _telaViagensState extends State<telaViagens> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(Lvez[index].dataEscolha.toString()+": " +Lvez[index].estadoOrigem.toString() + " - " +Lvez[index].cidadeOrigem.toString() + " -> "+Lvez[index].estadoDestino.toString() + " - " + Lvez[index].cidadeDestino.toString() + " - " + Lvez[index].distancia.toString()+"Km"),
-                    Text("Marcou em: "+ Lvez[index].dataMarcacao.toString()+ ", viajou em: " + Lvez[index].dataEscolha.toString() + " -> Diferença em dias: " + " Dia(s)")
+                    Text(Lviagem[index].dataEscolha.toString()+": " +Lviagem[index].estadoOrigem.toString() + " - " +Lviagem[index].cidadeOrigem.toString() + " -> "+Lviagem[index].estadoDestino.toString() + " - " + Lviagem[index].cidadeDestino.toString() + " - " + Lviagem[index].distancia.toString()+"Km"),
+                    Text("Marcou em: "+ Lviagem[index].dataMarcacao.toString()+ ", viajou em: " + Lviagem[index].dataEscolha.toString() + " -> Diferença em dias: " + " Dia(s)")
                     
                   ],
                 ),
@@ -85,7 +85,7 @@ class _telaViagensState extends State<telaViagens> {
       API.getViagem().then((response) {
        setState(() {        
         Iterable lista = json.decode(response.body);        
-        Lvez = lista.map((model) => viagens.fromJson(model)).toList();             
+        Lviagem = lista.map((model) => viagens.fromJson(model)).toList();             
             
       });
     });
@@ -101,15 +101,6 @@ class _telaViagensState extends State<telaViagens> {
     }
     
   }
-
- bool getExpandedVez(str){
-  
-  if(str.toString().toLowerCase().contains("true")){
-    return true;
-  }else{
-    return false;
-  }
- }
 
 
   _telaViagensState(){

@@ -1,4 +1,4 @@
-class viagens {
+class minhasViagems {
   String? id;
   String? idCooperado;
   String? idVeiculo;
@@ -22,13 +22,8 @@ class viagens {
   String? marca;
   String? modelo;
   String? avatar;
-  
-  bool? isExpanded;
 
-
-
-  
-  viagens(
+  minhasViagems(
       {this.id,
       this.idCooperado,
       this.idVeiculo,
@@ -53,7 +48,7 @@ class viagens {
       this.modelo,
       this.avatar});
 
-  viagens.fromJson(Map<String, dynamic> json) {
+  minhasViagems.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     idCooperado = json['id_cooperado'];
     idVeiculo = json['id_veiculo'];
